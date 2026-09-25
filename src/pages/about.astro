@@ -1,32 +1,56 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navigation from '../components/Navigation.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
-const hobbies = ["programar", "videojuegos", "música", "futbol"];
+const pageTitle = 'Acerca de mí';
+
+const identity = {
+	firstName: 'Fernando',
+	country: 'México',
+	occupation: 'estudiante de Desarrollo de Software',
+	hobbies: ['programar', 'videojuegos', 'música', 'futbol'],
+};
+
+const skills = ['HTML', 'CSS', 'JavaScript', 'React', 'Astro'];
+
 const happy = true;
+const finished = true;
+const goal = 3;
+
+const skillColor = 'navy';
+const fontWeight = 'bold';
+const textCase = 'uppercase';
 ---
 
-<Layout title="Acerca de mí">
-	<Navigation />
-	<p>¡Hola! Soy Fernando y este es mi primer blog hecho con Astro.</p>
-	<p>Soy estudiante de Desarrollo de Software en el CETI Colomos.</p>
+<BaseLayout pageTitle={pageTitle}>
+	<h2>... y mi nuevo sitio con Astro</h2>
 
-	{happy && <p>Y estoy feliz de estar aprendiendo Astro</p>}
+	<p>Estoy trabajando en el tutorial de Astro. Esta es la segunda página que agrego a mi sitio.</p>
 
-	<p>Mis pasatiempos son:</p>
+	<p>Aquí algunos datos sobre mí:</p>
 	<ul>
-		{hobbies.map((hobby) => <li>{hobby}</li>)}
+		<li>Mi nombre es {identity.firstName}.</li>
+		<li>Vivo en {identity.country} y soy {identity.occupation}.</li>
+		{identity.hobbies.length >= 2 && (
+			<li>Dos de mis pasatiempos son: {identity.hobbies[0]} y {identity.hobbies[1]}</li>
+		)}
 	</ul>
-</Layout>
 
-<style>
-	ul {
-		list-style: square;
-		padding-left: 1.5rem;
-	}
+	<p>Mis habilidades son:</p>
+	<ul>
+		{skills.map((skill) => <li class="skill">{skill}</li>)}
+	</ul>
 
-	li {
-		margin-bottom: 0.3rem;
-		color: #4a4a4a;
+	{happy && <p>¡Estoy feliz de estar aprendiendo Astro!</p>}
+
+	{finished && <p>Terminé este tutorial.</p>}
+
+	{goal === 3 ? <p>Mi meta es terminar en 3 días.</p> : <p>Mi meta no es de 3 días.</p>}
+</BaseLayout>
+
+<style define:vars={{ skillColor, fontWeight, textCase }}>
+	.skill {
+		color: var(--skillColor);
+		font-weight: var(--fontWeight);
+		text-transform: var(--textCase);
 	}
 </style>

@@ -1,9 +1,11 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navigation from '../components/Navigation.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Greeting from '../components/Greeting';
+
+const pageTitle = '¡Bienvenido a mi blog, soy Fernando!';
 ---
 
-<Layout title="¡Bienvenido a mi blog, soy Fernando!">
-	<Navigation />
+<BaseLayout pageTitle={pageTitle}>
 	<p>Este es mi blog personal hecho con Astro, como práctica del curso.</p>
-</Layout>
+	<Greeting client:load messages={['Hola', 'Hi', 'Qué onda', 'Bonjour']} />
+</BaseLayout>

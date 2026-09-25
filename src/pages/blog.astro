@@ -1,34 +1,16 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navigation from '../components/Navigation.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogPost from '../components/BlogPost.astro';
+
+const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
+const pageTitle = 'Mi Blog';
 ---
 
-<Layout title="Mi Blog">
-	<Navigation />
+<BaseLayout pageTitle={pageTitle}>
 	<p>Aquí vas a encontrar mis publicaciones.</p>
 	<ul>
-		<li><a href="/posts/post-1">Mi primer post</a></li>
-		<li><a href="/posts/post-2">Mi segundo post</a></li>
-		<li><a href="/posts/post-3">Mi tercer post</a></li>
+		{allPosts.map((post) => (
+			<BlogPost url={post.url} title={post.frontmatter.title} />
+		))}
 	</ul>
-</Layout>
-
-<style>
-	ul {
-		list-style: none;
-		padding: 0;
-	}
-
-	li {
-		margin-bottom: 0.5rem;
-	}
-
-	a {
-		color: #4a4a4a;
-		text-decoration: none;
-	}
-
-	a:hover {
-		text-decoration: underline;
-	}
-</style>
+</BaseLayout>
