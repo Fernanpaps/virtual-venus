@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+---
+
+<Layout title="Mi Blog">
+	<Navigation />
+	<p>Aquí vas a encontrar mis publicaciones.</p>
+	<ul>
+		<li><a href="/posts/post-1">Mi primer post</a></li>
+		<li><a href="/posts/post-2">Mi segundo post</a></li>
+		<li><a href="/posts/post-3">Mi tercer post</a></li>
+	</ul>
+</Layout>
+
+<style>
+	ul {
+		list-style: none;
+		padding: 0;
+	}
+
+	li {
+		margin-bottom: 0.5rem;
+	}
+
+	a {
+		color: #4a4a4a;
+		text-decoration: none;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+</style>

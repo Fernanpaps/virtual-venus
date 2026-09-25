@@ -1,9 +1,32 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+
+const hobbies = ["programar", "videojuegos", "música", "futbol"];
+const happy = true;
 ---
 
-<Layout>
-	<h1>Acerca de mí</h1>
+<Layout title="Acerca de mí">
+	<Navigation />
 	<p>¡Hola! Soy Fernando y este es mi primer blog hecho con Astro.</p>
 	<p>Soy estudiante de Desarrollo de Software en el CETI Colomos.</p>
+
+	{happy && <p>Y estoy feliz de estar aprendiendo Astro</p>}
+
+	<p>Mis pasatiempos son:</p>
+	<ul>
+		{hobbies.map((hobby) => <li>{hobby}</li>)}
+	</ul>
 </Layout>
+
+<style>
+	ul {
+		list-style: square;
+		padding-left: 1.5rem;
+	}
+
+	li {
+		margin-bottom: 0.3rem;
+		color: #4a4a4a;
+	}
+</style>
